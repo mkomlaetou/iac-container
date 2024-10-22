@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  my_service:
+    image: iac-container:v3
+    build: .
+    container_name: iac-service
+    ports:
+      - "2266:22"
+    volumes:
+      - ~/.kube:/home/iac-user/.kube
+    ## no ssh start  
+    # command: ["tail", "-f", "/dev/null"]
+    ## start ssh
+    command: ["/usr/sbin/sshd", "-D"]
